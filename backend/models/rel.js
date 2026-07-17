@@ -2,16 +2,16 @@ const Usuario = require('./Usuario')
 const Produto = require('./Produto')
 const Compra = require('./Compra')
 
-//  (1:N)
-
 Usuario.hasMany(Compra, {
     foreignKey: 'idUsuario',
     as: 'comprasUsuario',
     onDelete: 'CASCADE'
 })
+
 Compra.belongsTo(Usuario, {
     foreignKey: 'idUsuario',
-    as: 'usuarioCompra'
+    as: 'usuarioCompra',
+    allowNull: false
 })
 
 Produto.hasMany(Compra, {
@@ -19,9 +19,11 @@ Produto.hasMany(Compra, {
     as: 'comprasProduto',
     onDelete: 'CASCADE'
 })
+
 Compra.belongsTo(Produto, {
     foreignKey: 'idProduto',
-    as: 'produtoCompra'
+    as: 'produtoCompra',
+    allowNull: false
 })
 
 module.exports = { Usuario, Produto, Compra }

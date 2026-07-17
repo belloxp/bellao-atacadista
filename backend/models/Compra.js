@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize')
-const db = require('../db/db')
+const db = require('../db/conn')
 
 const Compra = db.define('compra', {
-    idCompra: {
+    codCompra: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    idUsuario: {                       
+    idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -15,7 +15,7 @@ const Compra = db.define('compra', {
             key: 'codUsuario'
         }
     },
-    idProduto: {                        
+    idProduto: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -23,24 +23,24 @@ const Compra = db.define('compra', {
             key: 'codProduto'
         }
     },
-    tipoMovimento: {                   
+    tipoMovimento: {
         type: DataTypes.ENUM('ENTRADA', 'SAIDA'),
         allowNull: false
     },
-    qntdMovimentada: {                 
+    quantidadeMovimentada: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    precoUnit: {                     
+    precoUnitario: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     },
-    desconto: {             
-        type: DataTypes.FLOAT,
-        allowNull: false,
-        defaultValue: 0
+    descontoAplicado: {
+        type: DataTypes.DECIMAL(5, 2),
+        allowNull: true,
+        defaultValue: 0.00
     },
-    precoFinal: {            
+    precoFinal: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     },
@@ -48,7 +48,7 @@ const Compra = db.define('compra', {
         type: DataTypes.ENUM('DEBITO', 'CREDITO', 'DINHEIRO'),
         allowNull: false
     },
-    statusPagamento: {
+    statusCompra: {
         type: DataTypes.ENUM('PAGA', 'PENDENTE'),
         allowNull: false
     },

@@ -1,16 +1,15 @@
 const { DataTypes } = require('sequelize')
-const db = require('../db/db')
+const db = require('../db/conn')
 
-//view "vw_volume_compras" 
 const VwVolumeCompras = db.define('VwVolumeCompras', {
-    nome: {                             
-        type: DataTypes.STRING(120),
-        primaryKey: true                
+    nome: {
+        type: DataTypes.STRING(100),
+        primaryKey: true
     },
-    quantidade_total_movimentada: {     
+    quantidade_total_movimentada: {
         type: DataTypes.INTEGER
     },
-    valor_financeiro_movimentado: {     
+    valor_financeiro_movimentado: {
         type: DataTypes.DECIMAL(10, 2)
     }
 }, {

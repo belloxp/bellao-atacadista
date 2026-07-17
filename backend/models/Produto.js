@@ -1,43 +1,41 @@
 const { DataTypes } = require('sequelize')
-const db = require('../db/db')
+const db = require('../db/conn')
 
-//https://dummyjson.com/products
 const Produto = db.define('produto', {
-    codProduto: {                      
+    codProduto: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
-    nome: {                             
-        type: DataTypes.STRING(120),
+    nome: {
+        type: DataTypes.STRING(100),
         allowNull: false
     },
-    descricao: {                       
+    descricao: {
         type: DataTypes.TEXT,
         allowNull: true
     },
-    categoria: {                        
-        type: DataTypes.STRING(60),
+    categoria: {
+        type: DataTypes.STRING(50),
         allowNull: false
     },
-    preco: {                           
+    preco: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     },
-    desconto: {                         
-        type: DataTypes.FLOAT,
-        allowNull: true,
-        defaultValue: 0
+    desconto: {
+        type: DataTypes.DECIMAL(5, 2),
+        allowNull: true
     },
-    quantidade: {                      
+    qtdeEstoque: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    marca: {                          
-        type: DataTypes.STRING(60),
+    marca: {
+        type: DataTypes.STRING(50),
         allowNull: true
     },
-    imagemUrl: {                        
+    imagem: {
         type: DataTypes.STRING(255),
         allowNull: true
     }

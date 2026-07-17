@@ -1,19 +1,18 @@
 const { DataTypes } = require('sequelize')
-const db = require('../db/db')
+const db = require('../db/conn')
 
-// view "vw_produtos_criticos" 
 const VwProdutosCriticos = db.define('VwProdutosCriticos', {
-    codigo_produto: {                  
+    codigo_produto: {
         type: DataTypes.INTEGER,
-        primaryKey: true              
+        primaryKey: true
     },
-    nome: {                             
-        type: DataTypes.STRING(120)
+    nome: {
+        type: DataTypes.STRING(100)
     },
     categoria: {
-        type: DataTypes.STRING(60)
+        type: DataTypes.STRING(50)
     },
-    quantidade_atual: {                 
+    quantidade_atual: {
         type: DataTypes.INTEGER
     }
 }, {
