@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <title>Sistema de Compras Interno</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="./index.html" class="nav_brand"><i class="bi bi-box-seam-fill"></i>Bellão Atacadista</a>
+            <ul class="nav_menu">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./html/dashboard.html">Dashboard</a></li>
+                <li class="dropdown">
+                    <span class="dropbtn">Usuários</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./html/usuario_cadastrar.html">Cadastrar (Manual/Lote)</a></li>
+                        <li><a href="./html/usuario_listar.html">Listar</a></li>
+                        <li><a href="./html/usuario_consultar.html">Consultar</a></li>
+                        <li><a href="./html/usuario_atualizar.html">Atualizar</a></li>
+                        <li><a href="./html/usuario_apagar.html">Apagar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Produtos</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./html/produto_cadastrar.html">Cadastrar (Manual/Lote)</a></li>
+                        <li><a href="./html/produto_listar.html">Listar</a></li>
+                        <li><a href="./html/produto_consultar.html">Consultar</a></li>
+                        <li><a href="./html/produto_atualizar.html">Atualizar</a></li>
+                        <li><a href="./html/produto_apagar.html">Apagar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Movimentação</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./html/movimento_cadastrar.html">Registrar Compra</a></li>
+                        <li><a href="./html/movimento_listar.html">Histórico de Movimentação</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Relatórios</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./html/relatorio_analitico.html">Analítico (Tabelas)</a></li>
+                        <li><a href="./html/relatorio_grafico.html">Gráfico (Chart.js)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Sistema de Compras Interno</h1>
+        <h2>Protótipo Piloto de Backoffice para gestão unificada da operação</h2>
+
+        <div class="container_home">
+            <div class="card_home">
+                <span class="icone"><i class="bi bi-people"></i></span>
+                <h3>Gestão de Usuários</h3>
+                <p>CRUD completo dos usuários do sistema com carga inicial em lote importada da API externa DummyJSON.</p>
+            </div>
+            <div class="card_home">
+                <span class="icone"><i class="bi bi-box-seam"></i></span>
+                <h3>Catálogo de Produtos</h3>
+                <p>CRUD completo do catálogo de produtos com controle de estoque, preços, descontos e imagens.</p>
+            </div>
+            <div class="card_home">
+                <span class="icone"><i class="bi bi-cart3"></i></span>
+                <h3>Movimentação de Estoque</h3>
+                <p>Registro das operações de compra com ENTRADA e SAÍDA de produtos e histórico completo de movimentação.</p>
+            </div>
+            <div class="card_home">
+                <span class="icone"><i class="bi bi-bar-chart"></i></span>
+                <h3>Relatórios e Gráficos</h3>
+                <p>Relatórios estratégicos extraídos de Views SQL e gráficos dinâmicos gerados com a biblioteca Chart.js.</p>
+            </div>
+        </div>
+
+        <p class="resposta">Node.js + Express + Sequelize + MySQL | HTML, CSS e JavaScript | Chart.js</p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+form, #container_lote, .container_form {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+label {
+    color: #9198a1;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input, select, button {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #e6edf3;
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+    max-width: 100%;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #2f81f7;
+}
+
+button {
+    background-color: #2f81f7;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f6feb;
+}
+
+.btn_apagar {
+    background-color: #da3633;
+}
+
+.btn_apagar:hover {
+    background-color: #f85149;
+}
+
+.divisor {
+    border: none;
+    border-top: 1px solid #30363d;
+    width: 60%;
+    margin: 0 auto;
+}
