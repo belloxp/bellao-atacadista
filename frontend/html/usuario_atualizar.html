@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style_cad.css">
+    <script src="../js/usuario_atualizar.js" defer></script>
+    <title>Atualização de Usuário</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="nav_brand"><i class="bi bi-box-seam-fill"></i>Bellão Atacadista</a>
+            <ul class="nav_menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./dashboard.html">Dashboard</a></li>
+                <li class="dropdown">
+                    <span class="dropbtn">Usuários</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./usuario_cadastrar.html">Cadastrar (Manual/Lote)</a></li>
+                        <li><a href="./usuario_listar.html">Listar</a></li>
+                        <li><a href="./usuario_consultar.html">Consultar</a></li>
+                        <li><a href="./usuario_atualizar.html">Atualizar</a></li>
+                        <li><a href="./usuario_apagar.html">Apagar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Produtos</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./produto_cadastrar.html">Cadastrar (Manual/Lote)</a></li>
+                        <li><a href="./produto_listar.html">Listar</a></li>
+                        <li><a href="./produto_consultar.html">Consultar</a></li>
+                        <li><a href="./produto_atualizar.html">Atualizar</a></li>
+                        <li><a href="./produto_apagar.html">Apagar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Movimentação</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./movimento_cadastrar.html">Registrar Compra</a></li>
+                        <li><a href="./movimento_listar.html">Histórico de Movimentação</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <span class="dropbtn">Relatórios</span>
+                    <ul class="dropdown_conteudo">
+                        <li><a href="./relatorio_analitico.html">Analítico (Tabelas)</a></li>
+                        <li><a href="./relatorio_grafico.html">Gráfico (Chart.js)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Atualização de Usuário</h2>
+        <br>
+        <div class="container_form">
+            <label for="codigo">Código do Usuário</label><br>
+            <input type="number" id="codigo" required><br><br>
+            <button id="btn_buscar">Buscar Usuário</button>
+        </div>
+
+        <br><br><hr class="divisor"><br>
+
+        <form id="form_atualizar">
+            <label for="nome">Nome</label><br>
+            <input type="text" id="nome"><br><br>
+
+            <label for="sobrenome">Sobrenome</label><br>
+            <input type="text" id="sobrenome"><br><br>
+
+            <label for="idade">Idade</label><br>
+            <input type="number" id="idade"><br><br>
+
+            <label for="email">E-mail</label><br>
+            <input type="email" id="email"><br><br>
+
+            <label for="telefone">Telefone</label><br>
+            <input type="text" id="telefone"><br><br>
+
+            <label for="endereco">Endereço</label><br>
+            <input type="text" id="endereco"><br><br>
+
+            <label for="cidade">Cidade</label><br>
+            <input type="text" id="cidade"><br><br>
+
+            <label for="estado">Estado</label><br>
+            <input type="text" id="estado"><br><br>
+
+            <button id="btn_atualizar">Atualizar Usuário</button>
+        </form>
+
+        <br>
+        <div id="resposta" class="resposta"></div>
+    </main>
+</body>
+</html>
