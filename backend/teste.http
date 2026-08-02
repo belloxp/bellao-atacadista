@@ -1,0 +1,175 @@
+### - Testes de Integração da API - REST Client (VS Code)
+### - Sistema de Compras Interno - db_compras
+
+#####################################################################
+### PASSO 1: SAÚDE DO SERVIDOR
+### - Teste se o servidor está funcionando
+GET http://localhost:3000/
+Content-Type: application/json
+
+#####################################################################
+### PASSO 2: GATILHO DA CARGA EM LOTE (BULKCREATE VIA FETCH NO BACKEND)
+
+### - Carga em lote de USUÁRIOS importados da API externa DummyJSON
+POST http://localhost:3000/usuarios/carga-api
+Content-Type: application/json
+
+### - Carga em lote de PRODUTOS importados da API externa DummyJSON
+POST http://localhost:3000/produtos/carga-api
+Content-Type: application/json
+
+#####################################################################
+### PASSO 3: CRUD COMPLETO DE USUÁRIOS
+
+### - CREATE: Cadastrar um novo usuário manualmente
+POST http://localhost:3000/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Carlos",
+    "sobrenome": "Silva",
+    "idade": 35,
+    "email": "carlos.silva@empresa.com.br",
+    "telefone": "(47) 99999-0000",
+    "endereco": "Rua das Indústrias, 100",
+    "cidade": "Jaraguá do Sul",
+    "estado": "SC"
+}
+
+### - READ ALL: Listar todos os usuários
+GET http://localhost:3000/usuarios
+Content-Type: application/json
+
+### - READ ONE: Consultar o usuário de código 1
+GET http://localhost:3000/usuarios/1
+Content-Type: application/json
+
+### - UPDATE: Atualizar os dados do usuário de código 1
+PUT http://localhost:3000/usuarios/1
+Content-Type: application/json
+
+{
+    "telefone": "(47) 98888-7777",
+    "cidade": "Joinville"
+}
+
+### - DELETE: Apagar o usuário de código 5
+DELETE http://localhost:3000/usuarios/5
+Content-Type: application/json
+
+#####################################################################
+### PASSO 4: CRUD COMPLETO DE PRODUTOS
+
+### - CREATE: Cadastrar um novo produto manualmente
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+    "nome": "Notebook Gamer Fusion X",
+    "descricao": "Notebook para alta performance com placa de vídeo dedicada",
+    "categoria": "Eletrônicos",
+    "preco": 5500.00,
+    "desconto": 5.00,
+    "qtdeEstoque": 8,
+    "marca": "Fusion",
+    "imagem": "https://cdn.dummyjson.com/products/images/laptops/thumbnail.png"
+}
+
+### - READ ALL: Listar todos os produtos
+GET http://localhost:3000/produtos
+Content-Type: application/json
+
+### - READ ONE: Consultar o produto de código 1
+GET http://localhost:3000/produtos/1
+Content-Type: application/json
+
+### - UPDATE: Atualizar o preço e o estoque do produto de código 1
+PUT http://localhost:3000/produtos/1
+Content-Type: application/json
+
+{
+    "preco": 60.00,
+    "qtdeEstoque": 5
+}
+
+### - DELETE: Apagar o produto de código 10
+DELETE http://localhost:3000/produtos/10
+Content-Type: application/json
+
+#####################################################################
+### PASSO 5: MOVIMENTAÇÕES DE ESTOQUE (COMPRAS)
+
+### - Movimentação 1: ENTRADA de mercadoria no estoque (Sucesso)
+POST http://localhost:3000/compra
+Content-Type: application/json
+
+{
+    "idUsuario": 1,
+    "idProduto": 1,
+    "tipoMovimento": "ENTRADA",
+    "quantidadeMovimentada": 10,
+    "descontoAplicado": 0.00,
+    "formaPagamento": "DINHEIRO",
+    "statusCompra": "PAGA",
+    "dataCompra": "2026-07-14"
+}
+
+### - Movimentação 2: SAIDA de mercadoria do estoque (Sucesso)
+POST http://localhost:3000/compra
+Content-Type: application/json
+
+{
+    "idUsuario": 1,
+    "idProduto": 1,
+    "tipoMovimento": "SAIDA",
+    "quantidadeMovimentada": 8,
+    "descontoAplicado": 10.00,
+    "formaPagamento": "CREDITO",
+    "statusCompra": "PAGA",
+    "dataCompra": "2026-07-14"
+}
+
+### - Movimentação 3: SAIDA com alto volume financeiro (Sucesso)
+POST http://localhost:3000/compra
+Content-Type: application/json
+
+{
+    "idUsuario": 2,
+    "idProduto": 2,
+    "tipoMovimento": "SAIDA",
+    "quantidadeMovimentada": 3,
+    "descontoAplicado": 0.00,
+    "formaPagamento": "DEBITO",
+    "statusCompra": "PENDENTE",
+    "dataCompra": "2026-07-14"
+}
+
+### - Movimentação 4: SAIDA com erro por falta de saldo no estoque (Deve retornar 400)
+POST http://localhost:3000/compra
+Content-Type: application/json
+
+{
+    "idUsuario": 1,
+    "idProduto": 1,
+    "tipoMovimento": "SAIDA",
+    "quantidadeMovimentada": 9999,
+    "descontoAplicado": 0.00,
+    "formaPagamento": "CREDITO",
+    "statusCompra": "PENDENTE",
+    "dataCompra": "2026-07-14"
+}
+
+### - Histórico completo de movimentações (com dados do usuário e do produto)
+GET http://localhost:3000/compras
+Content-Type: application/json
+
+#####################################################################
+### PASSO 6: RELATÓRIOS ANALÍTICOS E GRÁFICOS (VIEWS SQL)
+
+### - Relatório de Produtos Críticos (estoque < 10) - alimenta a tabela e o Gráfico 1
+GET http://localhost:3000/relatorio/produtos-criticos
+Content-Type: application/json
+
+### - Relatório de Volume Financeiro Comprado por Produto - alimenta a tabela e o Gráfico 2 (Top 5)
+GET http://localhost:3000/relatorio/volume-compras
+Content-Type: application/json
