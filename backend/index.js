@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 
 const conn = require('./db/conn')
 const produtoController = require('./controller/produto.controller')
@@ -8,8 +9,7 @@ const usuarioController = require('./controller/usuario.controller')
 const compraController = require('./controller/compra.controller')
 const relatVwController = require('./controller/relatVW.controller')
 
-const hostname = 'localhost'
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -41,10 +41,12 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: 'Aplicação rodando!!!' })
 })
 
+app.use(express.static(path.join(__dirname, '..', 'frontend')))
+
 conn.sync()
     .then(() => {
-        app.listen(PORT, hostname, () => {
-            console.log(`Servidor rodando em http://${hostname}:${PORT}`)
+        app.listen(PORT, () => {
+            console.log(`Servidor rodando na porta ${PORT}`)
         })
     })
     .catch((err) => {

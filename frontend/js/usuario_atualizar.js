@@ -10,7 +10,7 @@ btn_buscar.addEventListener('click', () => {
         return
     }
 
-    fetch(`http://localhost:3000/usuarios/${codigo}`)
+    fetch(`/usuarios/${codigo}`)
     .then(res => res.json())
     .then(dados => {
         if (!dados.codUsuario) {
@@ -56,7 +56,7 @@ btn_atualizar.addEventListener('click', (e) => {
         estado: document.getElementById('estado').value
     }
 
-    fetch(`http://localhost:3000/usuarios/${codigo}`, {
+    fetch(`/usuarios/${codigo}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

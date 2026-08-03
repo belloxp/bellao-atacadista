@@ -4,7 +4,7 @@ let container_criticos = document.getElementById('container_criticos')
 let container_volume = document.getElementById('container_volume')
 
 const gerarRelatorioCriticos = () => {
-    fetch('http://localhost:3000/relatorio/produtos-criticos')
+    fetch('/relatorio/produtos-criticos')
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")
@@ -51,7 +51,7 @@ const gerarRelatorioCriticos = () => {
 }
 
 const gerarRelatorioVolume = () => {
-    fetch('http://localhost:3000/relatorio/volume-compras')
+    fetch('/relatorio/volume-compras')
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")

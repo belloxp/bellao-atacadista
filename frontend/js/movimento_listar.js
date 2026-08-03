@@ -3,7 +3,7 @@ let btn_listar = document.getElementById('btn_listar')
 let container_tabela = document.getElementById('container_tabela')
 
 btn_listar.addEventListener('click', () => {
-    fetch('http://localhost:3000/compras')
+    fetch('/compras')
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")

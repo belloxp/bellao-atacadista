@@ -4,7 +4,7 @@ let graficoEstoque = null
 let graficoVolume = null
 
 const gerarGraficoEstoque = () => {
-    fetch('http://localhost:3000/relatorio/produtos-criticos')
+    fetch('/relatorio/produtos-criticos')
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")
@@ -87,7 +87,7 @@ const gerarGraficoEstoque = () => {
 }
 
 const gerarGraficoVolume = () => {
-    fetch('http://localhost:3000/relatorio/volume-compras')
+    fetch('/relatorio/volume-compras')
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")

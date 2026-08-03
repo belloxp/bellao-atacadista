@@ -3,7 +3,7 @@ let btn_registrar = document.getElementById('btn_registrar')
 let select_usuario = document.getElementById('idUsuario')
 let select_produto = document.getElementById('idProduto')
 
-fetch('http://localhost:3000/usuarios')
+fetch('/usuarios')
 .then(res => res.json())
 .then(dados => {
     let opcoes = '<option value="">Selecione o usuário...</option>'
@@ -19,7 +19,7 @@ fetch('http://localhost:3000/usuarios')
     select_usuario.innerHTML = '<option value="">Erro ao carregar usuários</option>'
 })
 
-fetch('http://localhost:3000/produtos')
+fetch('/produtos')
 .then(res => res.json())
 .then(dados => {
     let opcoes = '<option value="">Selecione o produto...</option>'
@@ -56,7 +56,7 @@ btn_registrar.addEventListener('click', (e) => {
         return
     }
 
-    fetch('http://localhost:3000/compra', {
+    fetch('/compra', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

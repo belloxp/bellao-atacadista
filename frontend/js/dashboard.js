@@ -1,7 +1,7 @@
 let resposta = document.getElementById('resposta')
 let container_cards = document.getElementById('container_cards')
 
-fetch('http://localhost:3000/produtos')
+fetch('/produtos')
 .then(res => res.json())
 .then(dados => {
     console.log("=========================================")

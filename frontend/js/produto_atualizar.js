@@ -10,7 +10,7 @@ btn_buscar.addEventListener('click', () => {
         return
     }
 
-    fetch(`http://localhost:3000/produtos/${codigo}`)
+    fetch(`/produtos/${codigo}`)
     .then(res => res.json())
     .then(dados => {
         if (!dados.codProduto) {
@@ -56,7 +56,7 @@ btn_atualizar.addEventListener('click', (e) => {
         imagem: document.getElementById('imagem').value
     }
 
-    fetch(`http://localhost:3000/produtos/${codigo}`, {
+    fetch(`/produtos/${codigo}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

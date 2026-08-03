@@ -10,7 +10,7 @@ btn_consultar.addEventListener('click', () => {
         return
     }
 
-    fetch(`http://localhost:3000/produtos/${codigo}`)
+    fetch(`/produtos/${codigo}`)
     .then(res => res.json())
     .then(dados => {
         console.log("=========================================")

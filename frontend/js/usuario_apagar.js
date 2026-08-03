@@ -15,7 +15,7 @@ btn_apagar.addEventListener('click', () => {
         return
     }
 
-    fetch(`http://localhost:3000/usuarios/${codigo}`, {
+    fetch(`/usuarios/${codigo}`, {
         method: 'DELETE'
     })
     .then(res => res.json())

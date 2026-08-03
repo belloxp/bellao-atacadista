@@ -1,0 +1,12 @@
+{
+  "outputDirectory": "frontend",
+  "rewrites": [
+    { "source": "/usuarios", "destination": "https://SEU-BACKEND.up.railway.app/usuarios" },
+    { "source": "/usuarios/:path*", "destination": "https://SEU-BACKEND.up.railway.app/usuarios/:path*" },
+    { "source": "/produtos", "destination": "https://SEU-BACKEND.up.railway.app/produtos" },
+    { "source": "/produtos/:path*", "destination": "https://SEU-BACKEND.up.railway.app/produtos/:path*" },
+    { "source": "/compra", "destination": "https://SEU-BACKEND.up.railway.app/compra" },
+    { "source": "/compras", "destination": "https://SEU-BACKEND.up.railway.app/compras" },
+    { "source": "/relatorio/:path*", "destination": "https://SEU-BACKEND.up.railway.app/relatorio/:path*" }
+  ]
+}

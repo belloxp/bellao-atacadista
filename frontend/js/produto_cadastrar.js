@@ -21,7 +21,7 @@ btn_cadastrar_manual.addEventListener('click', (e) => {
         return
     }
 
-    fetch('http://localhost:3000/produtos', {
+    fetch('/produtos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ btn_carga_lote.addEventListener('click', (e) => {
     .then(dadosExternos => {
         resposta.innerHTML = '<p style="color: cyan;">Dados recebidos com sucesso! Transmitindo lote para o back-end...</p>'
 
-        return fetch('http://localhost:3000/produtos/carga-lote', {
+        return fetch('/produtos/carga-lote', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
