@@ -1,8 +1,5 @@
 # Diagramas do Sistema de Compras Interno
 
-Os diagramas abaixo estão em sintaxe **Mermaid**. Para gerar as imagens `.png` exigidas
-na entrega, cole cada bloco em https://mermaid.live e exporte como PNG
-(ou use o MySQL Workbench para o Diagrama Lógico via Engenharia Reversa).
 
 ## 1. Diagrama de Caso de Uso Geral (UML)
 
