@@ -48,6 +48,13 @@ classDiagram
         +string endereco
         +string cidade
         +string estado
+        +cadastrar()
+        +listar()
+        +consultarPorId()
+        +atualizar()
+        +apagar()
+        +cargaLote()
+        +cargaAPI()
     }
 
     class Produto {
@@ -60,6 +67,13 @@ classDiagram
         +int qtdeEstoque
         +string marca
         +string imagem
+        +cadastrar()
+        +listar()
+        +consultarPorId()
+        +atualizar()
+        +apagar()
+        +cargaLote()
+        +cargaAPI()
     }
 
     class Compra {
@@ -74,6 +88,8 @@ classDiagram
         +enum formaPagamento
         +enum statusCompra
         +date dataCompra
+        +cadastrar()
+        +listar()
     }
 
     Usuario "1" --> "0..*" Compra : realiza
