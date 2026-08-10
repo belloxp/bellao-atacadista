@@ -1,51 +1,64 @@
-# Lista de Requisitos do Sistema de Compras Interno
+# Requisitos do Sistema de Compras Interno
 
-## 1. Requisitos Funcionais (RF)
+## Requisitos Funcionais
 
-| Código | Descrição |
-|--------|-----------|
-| RF01 | O sistema deve permitir o cadastro, listagem, consulta por código, atualização e exclusão de usuários (CRUD completo). |
-| RF02 | O sistema deve permitir o cadastro, listagem, consulta por código, atualização e exclusão de produtos (CRUD completo). |
-| RF03 | O sistema deve realizar a carga inicial em lote de usuários consumindo a API externa https://dummyjson.com/users via FETCH e inserindo com bulkCreate. |
-| RF04 | O sistema deve realizar a carga inicial em lote de produtos consumindo a API externa https://dummyjson.com/products via FETCH e inserindo com bulkCreate. |
-| RF05 | O sistema deve registrar movimentações de estoque do tipo ENTRADA e SAIDA, vinculadas a um usuário e a um produto. |
-| RF06 | O sistema deve calcular automaticamente o preço final da movimentação (quantidade × preço unitário − desconto percentual). |
-| RF07 | O sistema deve atualizar automaticamente o estoque do produto a cada movimentação registrada. |
-| RF08 | O sistema deve exibir o histórico completo de movimentações com os dados do usuário e do produto envolvidos. |
-| RF09 | O sistema deve exibir o Relatório Analítico de Produtos Críticos em forma de tabela, com dados extraídos da view vw_produtos_criticos. |
-| RF10 | O sistema deve exibir o Relatório Analítico de Volume Financeiro Comprado por Produto em forma de tabela, com dados extraídos da view vw_volume_compras. |
-| RF11 | O sistema deve exibir o Gráfico de Estoque Físico Atual (barras verticais) com Chart.js, alimentado pela rota conectada à view de produtos críticos. |
-| RF12 | O sistema deve exibir o Gráfico de Volume Financeiro de Compras (barras horizontais) com Chart.js, exibindo estritamente os 5 produtos com maior valor movimentado. |
-| RF13 | O sistema deve disponibilizar um Dashboard centralizador exibindo os produtos na forma de cards. |
-| RF14 | O sistema deve disponibilizar uma barra de navegação (Navbar) sempre acessível no topo, integrando todas as telas. |
-| RF15 | O backend deve disponibilizar uma rota de verificação de saúde do servidor (GET /). |
+RF 01 - Cadastrar usuário
+RF 02 - Consultar usuário
+RF 03 - Listar usuários
+RF 04 - Atualizar usuário
+RF 05 - Apagar usuário
+RF 06 - Cadastrar produto
+RF 07 - Consultar produto
+RF 08 - Listar produtos
+RF 09 - Atualizar produto
+RF 10 - Apagar produto
+RF 11 - Realizar a carga inicial em lote de usuários e produtos a partir de APIs externas
+RF 12 - Registrar movimentação de estoque (entrada e saída)
+RF 13 - Listar o histórico completo de movimentações
+RF 14 - Exibir relatórios analíticos em tabela (produtos críticos e volume financeiro por produto)
+RF 15 - Exibir relatórios gráficos (estoque físico atual e volume financeiro de compras)
+RF 16 - Exibir o dashboard dos produtos na forma de cards
 
-## 2. Requisitos Não Funcionais (RNF)
+## Requisitos Não-Funcionais
 
-| Código | Descrição |
-|--------|-----------|
-| RNF01 | O backend deve ser desenvolvido em Node.js com o framework Express, seguindo o padrão de arquitetura REST. |
-| RNF02 | A integração com o banco de dados deve ser realizada através do ORM Sequelize com MySQL. |
-| RNF03 | O banco de dados deve se chamar db_compras. |
-| RNF04 | O frontend deve ser desenvolvido em HTML, CSS e JavaScript puro, consumindo a API via fetch. |
-| RNF05 | Os gráficos devem ser gerados com a biblioteca Chart.js. |
-| RNF06 | O backend deve aceitar requisições de origens distintas (CORS habilitado). |
-| RNF07 | O código deve ser organizado no padrão MVC (models, controllers e rotas separados). |
-| RNF08 | O projeto deve conter o arquivo teste.http na raiz do backend, compatível com a extensão REST Client do VS Code. |
-| RNF09 | O código-fonte deve ser versionado no GitHub com no mínimo 5 commits e comentado. |
-| RNF10 | As respostas da API devem utilizar o formato JSON e códigos de status HTTP adequados (200, 201, 400, 404, 500). |
+RNF 01 - Desempenho: o sistema é dependente do tempo de resposta do banco de dados e das APIs externas consultadas durante a carga em lote.
 
-## 3. Regras de Negócio (RN)
+RNF 02 - Escalabilidade: o sistema pode ser escalado para mais servidores e hospedado em nuvem.
 
-| Código | Descrição |
-|--------|-----------|
-| RN01 | A view vw_produtos_criticos deve filtrar e retornar apenas os produtos cujo estoque atual seja inferior a 10 unidades. |
-| RN02 | O valor financeiro movimentado da view vw_volume_compras deve ser calculado multiplicando a quantidade total de itens comprados (saídas) pelo preço unitário registrado no momento da compra. |
-| RN03 | Uma movimentação de SAIDA só pode ser registrada se houver saldo suficiente em estoque; caso contrário o sistema retorna erro 400. |
-| RN04 | Movimentações de ENTRADA somam a quantidade movimentada ao estoque; movimentações de SAIDA subtraem. |
-| RN05 | O preço unitário da movimentação é sempre recuperado do cadastro atual do produto no momento do registro. |
-| RN06 | O tipo de movimento aceita apenas os valores ENTRADA e SAIDA. |
-| RN07 | A forma de pagamento aceita apenas os valores DEBITO, CREDITO e DINHEIRO. |
-| RN08 | O status da compra aceita apenas os valores PAGA e PENDENTE. |
-| RN09 | O Gráfico 2 (Volume Financeiro) deve exibir estritamente os 5 produtos com o maior valor financeiro movimentado. |
-| RN10 | Uma movimentação só pode ser registrada para usuário e produto existentes no banco (erro 404 caso contrário). |
+RNF 03 - Usabilidade: o sistema foi desenvolvido com links de navegação disponíveis e sempre acessíveis no topo da tela, botões e rótulos indicativos (label) dos campos de fácil entendimento pelo usuário, com cores apropriadas.
+
+RNF 04 - Portabilidade: o sistema pode operar em diferentes plataformas em função do uso de navegadores web e foi implementado para computadores de mesa (desktop).
+
+RNF 05 - Confiabilidade: a gravação dos dados no banco de dados usa operações únicas (atômicas) e valida o saldo em estoque antes de concluir uma saída.
+
+RNF 06 - Integridade: o relacionamento entre as tabelas é garantido por chaves estrangeiras, mantendo a integridade referencial entre usuários, produtos e movimentações.
+
+## Regras de Negócio
+
+RN 01 - Na gravação dos dados, os campos obrigatórios devem ser preenchidos.
+
+RN 02 - Os cadastros são únicos (código do cadastro) e controlados através de chave primária com valor incremental.
+
+RN 03 - A carga inicial de usuários e produtos é realizada em lote a partir de APIs externas, com inserção única de todos os registros no banco de dados.
+
+RN 04 - A movimentação de estoque possui dois tipos: ENTRADA, que soma a quantidade ao estoque, e SAÍDA, que subtrai a quantidade do estoque.
+
+RN 05 - Uma movimentação de saída só é gravada se houver saldo suficiente em estoque; caso contrário, a operação é recusada.
+
+RN 06 - O preço final da movimentação é calculado antes da gravação (obrigatório), conforme a fórmula: (quantidade movimentada x preço unitário) menos o desconto percentual aplicado.
+
+RN 07 - O preço unitário da movimentação é obtido do cadastro atual do produto no momento do registro.
+
+RN 08 - O relatório de produtos críticos exibe apenas os produtos cujo estoque atual é inferior a 10 unidades.
+
+RN 09 - O valor financeiro movimentado é calculado multiplicando a quantidade total movimentada pelo preço unitário registrado nas saídas.
+
+RN 10 - O gráfico de volume financeiro exibe estritamente os 5 produtos com o maior valor financeiro movimentado.
+
+RN 11 - As operações de consultar e apagar os dados usam o código (chave primária incremental).
+
+RN 12 - As operações de consultar e listar são exibidas na forma de tabela.
+
+RN 13 - Foi implementado sistema de navegação sempre acessível no topo da tela.
+
+RN 14 - Os campos de tipo de movimento, forma de pagamento e status da compra aceitam apenas valores pré-definidos (ENUM).
