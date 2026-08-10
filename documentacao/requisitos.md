@@ -12,12 +12,11 @@
 - **RF 08** - Listar produtos
 - **RF 09** - Atualizar produto
 - **RF 10** - Apagar produto
-- **RF 11** - Realizar a carga inicial em lote de usuários e produtos a partir de APIs externas
+- **RF 11** - Carga inicial em lote de usuários e produtos a partir de APIs externas
 - **RF 12** - Registrar movimentação de estoque (entrada e saída)
 - **RF 13** - Listar o histórico completo de movimentações
 - **RF 14** - Exibir relatórios analíticos em tabela (produtos críticos e volume financeiro por produto)
 - **RF 15** - Exibir relatórios gráficos (estoque físico atual e volume financeiro de compras)
-- **RF 16** - Exibir o dashboard dos produtos na forma de cards
 
 ## Requisitos Não-Funcionais
 
@@ -44,3 +43,5 @@
 - **RN 12** - As operações de consultar e listar são exibidas na forma de tabela.
 - **RN 13** - Foi implementado sistema de navegação sempre acessível no topo da tela.
 - **RN 14** - Os campos de tipo de movimento, forma de pagamento e status da compra aceitam apenas valores pré-definidos (ENUM).
+- **RF 15** - Exibir o dashboard dos produtos na forma de cards
+
