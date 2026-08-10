@@ -1,42 +1,53 @@
-# Requisitos do Sistema de Compras Interno
+# Sistema de Compras Interno — Lista de Requisitos
 
 ## Requisitos Funcionais
 
-- **RF 01** - Gerenciar usuários (cadastrar, consultar, listar, atualizar e apagar)
-- **RF 02** - Gerenciar produtos (cadastrar, consultar, listar, atualizar e apagar)
-- **RF 03** - Realizar a carga inicial em lote de usuários a partir de API externa
-- **RF 04** - Realizar a carga inicial em lote de produtos a partir de API externa
-- **RF 05** - Registrar movimentação de estoque (entrada e saída)
-- **RF 06** - Listar o histórico completo de movimentações
-- **RF 07** - Exibir relatório analítico de produtos críticos em tabela
-- **RF 08** - Exibir relatório analítico de volume financeiro comprado por produto em tabela
-- **RF 09** - Exibir relatório gráfico de estoque físico atual
-- **RF 10** - Exibir relatório gráfico de volume financeiro de compras
-- **RF 11** - Exibir o dashboard dos produtos na forma de cards
+- **RF01 — Cadastrar usuários:** permitir o cadastro com nome, sobrenome, idade, e-mail, telefone, endereço, cidade e estado.
+- **RF02 — Importar usuários:** permitir o cadastro de usuários em lote por meio da API DummyJSON.
+- **RF03 — Consultar usuários:** listar todos os usuários cadastrados.
+- **RF04 — Buscar usuários:** permitir a busca por código ou nome.
+- **RF05 — Editar usuários:** permitir a alteração dos dados de um usuário.
+- **RF06 — Excluir usuários:** permitir a exclusão de um usuário pelo código.
+- **RF07 — Cadastrar produtos:** registrar nome, descrição, categoria, preço, desconto, quantidade, marca e URL da imagem.
+- **RF08 — Importar produtos:** permitir o cadastro de produtos em lote por meio da API DummyJSON.
+- **RF09 — Consultar produtos:** listar todos os produtos cadastrados.
+- **RF10 — Buscar produtos:** permitir a busca por código ou nome.
+- **RF11 — Editar produtos:** permitir a alteração dos dados de um produto.
+- **RF12 — Excluir produtos:** permitir a exclusão de um produto pelo código.
+- **RF13 — Registrar movimentações:** registrar entradas e saídas de produtos.
+- **RF14 — Atualizar estoque:** atualizar automaticamente a quantidade disponível após cada movimentação.
+- **RF15 — Listar movimentações:** apresentar todas as compras e movimentações cadastradas.
+- **RF16 — Calcular valor final:** calcular automaticamente o valor da movimentação considerando quantidade, preço unitário e desconto.
+- **RF17 — Exibir dashboard:** apresentar os produtos cadastrados em cards com imagem, descrição, categoria, marca, preço e estoque.
+- **RF18 — Gerar relatório de estoque crítico:** listar produtos com quantidade inferior a 10 unidades.
+- **RF19 — Gerar relatório financeiro:** apresentar a quantidade e o valor financeiro das saídas agrupadas por produto.
+- **RF20 — Gerar gráficos:** apresentar gráficos de estoque crítico e dos cinco produtos com maior volume financeiro.
 
-## Requisitos Não-Funcionais
+## Requisitos Não Funcionais
 
-- **RNF 01 - Desempenho:** o sistema é dependente do tempo de resposta do banco de dados e das APIs externas consultadas durante a carga em lote.
-- **RNF 02 - Escalabilidade:** o sistema pode ser escalado para mais servidores e hospedado em nuvem.
-- **RNF 03 - Usabilidade:** o sistema foi desenvolvido com links de navegação disponíveis e sempre acessíveis no topo da tela, botões e rótulos indicativos (label) dos campos de fácil entendimento pelo usuário, com cores apropriadas.
-- **RNF 04 - Portabilidade:** o sistema pode operar em diferentes plataformas em função do uso de navegadores web e foi implementado para computadores de mesa (desktop).
-- **RNF 05 - Confiabilidade:** a gravação dos dados no banco de dados usa operações únicas (atômicas) e valida o saldo em estoque antes de concluir uma saída.
-- **RNF 06 - Integridade:** o relacionamento entre as tabelas é garantido por chaves estrangeiras, mantendo a integridade referencial entre usuários, produtos e movimentações.
+- **RNF01 – Eficiência**
+- **RNF02 – Compatibilidade**
+- **RNF03 – Usabilidade**
+- **RNF04 – Confiabilidade**
+- **RNF05 – Manutenibilidade**
 
 ## Regras de Negócio
 
-- **RN 01** - Na gravação dos dados, os campos obrigatórios devem ser preenchidos.
-- **RN 02** - Os cadastros são únicos (código do cadastro) e controlados através de chave primária com valor incremental.
-- **RN 03** - A carga inicial de usuários e produtos é realizada em lote a partir de APIs externas, com inserção única de todos os registros no banco de dados.
-- **RN 04** - A movimentação de estoque possui dois tipos: ENTRADA, que soma a quantidade ao estoque, e SAÍDA, que subtrai a quantidade do estoque.
-- **RN 05** - Uma movimentação de saída só é gravada se houver saldo suficiente em estoque; caso contrário, a operação é recusada.
-- **RN 06** - O preço final da movimentação é calculado antes da gravação (obrigatório), conforme a fórmula: (quantidade movimentada x preço unitário) menos o desconto percentual aplicado.
-- **RN 07** - O preço unitário da movimentação é obtido do cadastro atual do produto no momento do registro.
-- **RN 08** - O relatório de produtos críticos exibe apenas os produtos cujo estoque atual é inferior a 10 unidades.
-- **RN 09** - O valor financeiro movimentado é calculado multiplicando a quantidade total movimentada pelo preço unitário registrado nas saídas.
-- **RN 10** - O gráfico de volume financeiro exibe estritamente os 5 produtos com o maior valor financeiro movimentado.
-- **RN 11** - As operações de consultar e apagar os dados usam o código (chave primária incremental).
-- **RN 12** - As operações de consultar e listar são exibidas na forma de tabela.
-- **RN 13** - Foi implementado sistema de navegação sempre acessível no topo da tela.
-- **RN 14** - Os campos de tipo de movimento, forma de pagamento e status da compra aceitam apenas valores pré-definidos (ENUM).
-
+- **RN01 – Produtos críticos:** um produto deve ser considerado crítico quando possuir estoque atual inferior a 10 unidades.
+- **RN02 – View de produtos críticos:** a View vw_produtos_criticos deve retornar somente produtos cujo estoque atual seja menor que 10 unidades.
+- **RN03 – Cálculo do volume financeiro:** o valor financeiro movimentado deve ser calculado através da quantidade movimentada multiplicada pelo preço unitário registrado no momento da compra: Valor financeiro = Quantidade Movimentada × Preço Unitário.
+- **RN04 – Movimentações consideradas no volume comprado:** o relatório de volume comprado deve considerar as movimentações de saída do estoque.
+- **RN05 – View de volume de compras:** a View vw_volume_compras deve apresentar o nome do produto, a quantidade total movimentada e o valor financeiro movimentado.
+- **RN06 – Movimentação de entrada:** uma movimentação do tipo ENTRADA deve representar a entrada de unidades de um produto no estoque.
+- **RN07 – Movimentação de saída:** uma movimentação do tipo SAIDA deve representar a retirada de unidades de um produto do estoque.
+- **RN08 – Saldo insuficiente:** uma operação de saída não deve ser concluída quando não houver saldo suficiente do produto em estoque. O documento exige explicitamente um cenário de teste de erro por falta de saldo.
+- **RN09 – Tipos de movimentação permitidos:** o campo Tipo Movimento deve aceitar ENTRADA ou SAIDA.
+- **RN10 – Formas de pagamento permitidas:** a forma de pagamento deve ser DEBITO, CREDITO ou DINHEIRO.
+- **RN11 – Status da compra:** o status de uma compra deve ser PAGA ou PENDENTE.
+- **RN12 – Gráfico de estoque crítico:** o gráfico de Estoque Físico Atual deve apresentar apenas produtos com estoque inferior a 10 unidades.
+- **RN13 – Limite do gráfico financeiro:** o gráfico de Volume Financeiro de Compras deve apresentar estritamente os 5 produtos com maior valor financeiro movimentado.
+- **RN14 – Ordenação do gráfico financeiro:** para determinar os cinco produtos exibidos, devem ser considerados aqueles com os maiores valores financeiros movimentados.
+- **RN15 – Fonte dos dados do gráfico financeiro:** o gráfico de Volume Financeiro de Compras deve utilizar os dados provenientes da View vw_volume_compras.
+- **RN16 – Relacionamento da compra com usuário:** cada compra deve estar associada a um usuário através do ID do usuário.
+- **RN17 – Relacionamento da compra com produto:** cada compra deve estar associada a um produto através do ID do produto.
+- **RN18 – Preço da movimentação:** o preço unitário utilizado nos cálculos deve ser o preço registrado no momento da compra, permitindo manter corretamente o histórico financeiro mesmo que o preço do produto seja alterado posteriormente.
