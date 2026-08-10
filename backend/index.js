@@ -15,6 +15,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
 
+app.use(express.static(path.join(__dirname, '..', 'frontend')))
+
 app.post('/usuarios/carga-lote', usuarioController.cargaLote)
 app.post('/usuarios/carga-api', usuarioController.cargaAPI)
 app.post('/usuarios', usuarioController.cadastrar)
@@ -37,11 +39,9 @@ app.get('/compras', compraController.listar)
 app.get('/relatorio/produtos-criticos', relatVwController.listarProdutosCriticos)
 app.get('/relatorio/volume-compras', relatVwController.listarVolumeCompras)
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.status(200).json({ message: 'Aplicação rodando!!!' })
 })
-
-app.use(express.static(path.join(__dirname, '..', 'frontend')))
 
 conn.sync()
     .then(() => {
